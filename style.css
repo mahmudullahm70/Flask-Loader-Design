@@ -1,0 +1,57 @@
+/* পুরো বডি সেটআপ */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #000; /* স্ক্রিনশটের মতো কালো ব্যাকগ্রাউন্ড */
+}
+
+/* লোডার কন্টেইনার */
+.loader {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* প্রতিটি বারের স্টাইল */
+.flask {
+    width: 25px;
+    height: 100px;
+    position: relative;
+    border-radius: 15px;
+    background: #ffffff21; /* হালকা সাদা স্বচ্ছ লেয়ার */
+    overflow: hidden;
+    box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 0.1);
+}
+
+/* অ্যানিমেশন ইফেক্ট (তরল অংশ) */
+.flask::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #20e2d7; /* উজ্জ্বল সায়ান কালার */
+    border-radius: 15px;
+    box-shadow: 0 0 20px #20e2d7, 0 0 40px #20e2d7; /* গ্লোয়িং ইফেক্ট */
+    animation: animate 2s ease-in-out infinite;
+    /* প্রতিটি বারের জন্য আলাদা সময় নির্ধারণ */
+    animation-delay: calc(0.2s * var(--i));
+}
+
+/* অ্যানিমেশনের মূল কাজ */
+@keyframes animate {
+    0%, 100% {
+        height: 10%; /* শুরুতে এবং শেষে ১০% থাকবে */
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        height: 100%; /* মাঝামাঝি সময়ে পূর্ণ হয়ে যাবে */
+        filter: hue-rotate(90deg); /* রঙ হালকা পরিবর্তন হবে */
+    }
+}
